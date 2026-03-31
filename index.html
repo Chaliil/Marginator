@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Marginator</title>
+
+  <!-- 
+    TEXT CONTENT TO EDIT:
+    - Replace Marginator, APP_DESCRIPTION, DISCLAIMER_TEXT with your own content.
+  -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="APP_DESCRIPTION" />
+
+  <style>
+    /* 
+      Minimal, clean, Apple-like styling.
+      Uses system font stack and light mode only.
+    */
+
+    :root {
+      --bg: #f5f5f7;
+      --card-bg: #ffffff;
+      --text-main: #1d1d1f;
+      --text-muted: #6e6e73;
+      --border-subtle: rgba(0, 0, 0, 0.08);
+      --accent: #0071e3;
+      --accent-hover: #005bb5;
+      --error: #c62828;
+      --success: #1d7a3a;
+      --radius-lg: 12px;
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.08);
+      --shadow-subtle: 0 1px 4px rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        system-ui, -system-ui, "Helvetica Neue", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 700px;
+      background: var(--card-bg);
+      border-radius: 24px;
+      box-shadow: var(--shadow-soft);
+      padding: 32px 20px 24px;
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    @media (min-width: 640px) {
+      .page {
+        padding: 40px 40px 28px;
+      }
+    }
+
+    .header {
+      text-align: center;
+    }
+
+    .app-name {
+      font-size: 1.9rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 0 0 6px;
+    }
+
+    .app-subtitle {
+      margin: 0 0 10px;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .app-description {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: var(--text-muted);
+    }
+
+    .screenshot {
+      margin-top: 8px;
+      width: 100%;
+      max-width: 640px;
+      border-radius: 20px;
+      display: block;
+      object-fit: cover;
+    }
+
+    .download-section {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .primary-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: none;
+      background: var(--accent);
+      color: #ffffff;
+      font-size: 0.98rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.16s ease, transform 0.12s ease,
+        box-shadow 0.16s ease;
+      box-shadow: 0 10px 20px rgba(0, 113, 227, 0.35);
+    }
+
+    .primary-button:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(0, 91, 181, 0.4);
+    }
+
+    .primary-button:active {
+      transform: translateY(0);
+      box-shadow: 0 8px 16px rgba(0, 91, 181, 0.35);
+    }
+
+    .section-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0 0 8px;
+    }
+
+    .contact-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      background: #fafafa;
+      padding: 16px 16px 14px;
+    }
+
+    @media (min-width: 640px) {
+      .contact-card {
+        padding: 18px 18px 16px;
+      }
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    input[type="email"],
+    textarea {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid var(--border-subtle);
+      padding: 9px 11px;
+      font: inherit;
+      resize: vertical;
+      min-height: 40px;
+      background: #ffffff;
+      transition: border-color 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    textarea {
+      min-height: 96px;
+      line-height: 1.45;
+    }
+
+    input[type="email"]:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(0, 113, 227, 0.15);
+    }
+
+    .form-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 4px;
+      flex-wrap: wrap;
+    }
+
+    .form-submit {
+      min-width: 120px;
+      min-height: 38px;
+      border-radius: 999px;
+      border: none;
+      padding: 0 16px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      background: #1d1d1f;
+      color: #ffffff;
+      cursor: pointer;
+      transition: background 0.16s ease, transform 0.12s ease,
+        box-shadow 0.16s ease;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22);
+    }
+
+    .form-submit:hover {
+      background: #000000;
+      transform: translateY(-1px);
+      box-shadow: 0 9px 18px rgba(0, 0, 0, 0.26);
+    }
+
+    .form-submit:active {
+      transform: translateY(0);
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.22);
+    }
+
+    .disclaimer {
+      margin-top: 10px;
+      padding: 16px 18px;
+      border: 1px solid rgba(0, 113, 227, 0.28);
+      border-left: 4px solid var(--accent);
+      border-radius: var(--radius-lg);
+      background: #f8fbff;
+      font-size: 0.96rem;
+      line-height: 1.55;
+      color: var(--text-main);
+      text-align: left;
+    }
+
+    .disclaimer small {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="header">
+      <h1 class="app-name">Marginator</h1>
+      <p class="app-subtitle">by Khalil Kiser</p>
+      <p class="app-description">
+        This small tool lets you add a white box to your PDF files to take notes in. It lets you take notes on the same page in an app like Goodnotes if you are working with slide decks or documents. It even removes encryption from PDFs as long as you have the correct password.
+      </p>
+    </header>
+
+    <section class="screenshot-section" aria-label="App screenshot">
+      <!-- 
+        SCREENSHOT PLACEHOLDER:
+        - Save your app screenshot next to this file as "screenshot.jpg"
+        - Or change the src attribute below to match your filename.
+      -->
+      <img
+        src="screenshot.png"
+        alt="Screenshot of Marginator"
+        class="screenshot"
+      />
+    </section>
+
+    <section class="download-section" aria-label="Download Marginator">
+      <!-- 
+        GITHUB DOWNLOAD URLS TO EDIT:
+
+        1) Primary download button:
+           Replace USERNAME, REPO, and APP.dmg with your real values.
+
+           https://github.com/USERNAME/REPO/releases/latest/download/APP.dmg
+
+      -->
+      <a
+        href="https://github.com/USERNAME/REPO/releases/latest/download/APP.dmg"
+        class="primary-button"
+      >
+        Download for macOS
+      </a>
+
+    </section>
+
+    <section class="disclaimer" aria-label="Important disclaimer">
+      <!-- 
+        DISCLAIMER TEXT TO EDIT:
+        Replace DISCLAIMER_TEXT below with any legal or informational disclaimer you need.
+      -->
+      <small>Disclaimer: I am a student with little to no interest or experience in coding. I built this with the help of AI as a personal tool to improve my workflow. Maybe it helps you too. The code quality is probably quite poor, but it works for me. If you encounter any problems, or you want the source code to adapt it, contact me. I have no problem with people distributing it, as long as you credit me and do not sell it.</small>
+    </section>
+
+    <section aria-label="Contact form">
+      <div class="contact-card">
+        <h2 class="section-title">Contact</h2>
+        <!-- 
+          FORMSPREE SETUP (IMPORTANT):
+
+          1) Go to https://formspree.io
+          2) Create a new form (free tier is fine).
+          3) Paste your full endpoint URL into the form action below.
+             Current endpoint:
+             https://formspree.io/f/xnjovzyq
+
+          4) Formspree handles submission and response pages automatically.
+        -->
+        <form
+          id="contact-form"
+          method="POST"
+          action="https://formspree.io/f/xnjovzyq"
+        >
+          <div>
+            <label for="email">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              placeholder="you@example.com"
+            />
+          </div>
+
+          <div>
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              placeholder="How can I help?"
+            ></textarea>
+          </div>
+
+          <div class="form-footer">
+            <button type="submit" class="form-submit">
+              Send message
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
